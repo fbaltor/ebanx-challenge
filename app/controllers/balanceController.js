@@ -6,5 +6,5 @@ export const balanceController = (req, res) => {
     if (!account)
         return res.status(404).send(String(0))
 
-    return res.send(String(account.amount))
+    return res.send(String(account.balance))
 }
