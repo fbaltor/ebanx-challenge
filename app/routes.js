@@ -9,7 +9,7 @@ const router = express.Router()
 router.use('/balance', balanceController)
 
 // Events route
-router.use('/event',eventController)
+router.use('/event', eventController)
 
 // fallback
 router.use(() => {})
