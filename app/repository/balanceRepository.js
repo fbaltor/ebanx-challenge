@@ -37,6 +37,23 @@ export const withdraw = (originId, amount) => {
         return false
     
     account.balance -= amount
-    
+
     return account
+}
+
+export const transfer = (originId, destinationId, amount) => {
+    let originAccount = findByAccountId(originId)
+    let destinationAccount = findByAccountId(destinationId)
+
+    if (!originAccount || !destinationAccount) {
+        return false
+    }
+
+    originAccount = withdraw(originId, amount)
+    destinationAccount = deposit(destinationId, amount)
+
+    return {
+        origin: originAccount,
+        destination: destinationAccount
+    }
 }

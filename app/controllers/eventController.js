@@ -1,4 +1,4 @@
-import { deposit, withdraw } from "../repository/balanceRepository.js"
+import { deposit, transfer, withdraw } from "../repository/balanceRepository.js"
 
 export const eventController = (req, res) => {
     const event = req.body
@@ -24,5 +24,14 @@ export const eventController = (req, res) => {
         }
 
         return res.status(201).send(response)
+    }
+
+    if (event.type === 'transfer') {
+        const transferResult = transfer(event.origin, event.destination, event.amount)
+
+        if (!transferResult)
+            return res.status(404).send(String(0))
+        
+        return res.status(201).send(transferResult)
     }
 }
