@@ -6,10 +6,10 @@ import { eventController } from "./controllers/eventController.js"
 const router = express.Router()
 
 // Balance route
-router.use('/balance', balanceController)
+router.get('/balance', balanceController)
 
 // Events route
-router.use('/event', eventController)
+router.post('/event', eventController)
 
 // fallback
 router.use(() => {})
