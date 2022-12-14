@@ -11,6 +11,10 @@ const balanceRepository = {
     ],
 }
 
+export const clear = () =>{
+    balanceRepository.accounts = []
+}
+
 export const findByAccountId = (id) => 
     balanceRepository.accounts.find(acc => acc.id == id)
 
@@ -43,14 +47,13 @@ export const withdraw = (originId, amount) => {
 
 export const transfer = (originId, destinationId, amount) => {
     let originAccount = findByAccountId(originId)
-    let destinationAccount = findByAccountId(destinationId)
 
-    if (!originAccount || !destinationAccount) {
+    if (!originAccount) {
         return false
     }
 
     originAccount = withdraw(originId, amount)
-    destinationAccount = deposit(destinationId, amount)
+    const destinationAccount = deposit(destinationId, amount)
 
     return {
         origin: originAccount,

@@ -2,6 +2,7 @@ import express from "express"
 
 import { balanceController } from "./controllers/balanceController.js"
 import { eventController } from "./controllers/eventController.js"
+import { reset } from "./controllers/reset.js"
 
 const router = express.Router()
 
@@ -12,6 +13,6 @@ router.get('/balance', balanceController)
 router.post('/event', eventController)
 
 // fallback
-router.use(() => {})
+router.post('/reset', reset)
 
 export default router
